@@ -21,17 +21,21 @@ GET http://localhost:6000/api/v1/products/3 HTTP/1.1
 
 ### Place Order
 # @name placeorder
-POST http://localhost:6001/api/orders/placeOrder HTTP/1.1
+POST http://localhost:6001/api/v1/orders/placeOrder HTTP/1.1
 Content-Type: application/json
 
 {
    "orderItems":[
         {
-            "productCode":"NDIZI_01",
+            "productCode":"potatoes_0001",
             "quantity":100
         },
         {
-            "productCode":"PNP_01",
+            "productCode":"apple_00033",
+            "quantity":50
+        },
+         {
+            "productCode":"lecon_37927432",
             "quantity":50
         }
    ]
