@@ -1,6 +1,7 @@
 package com.ecommerce.orderservice.service.implementation;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.BeanUtils;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ecommerce.orderservice.entity.Order;
 import com.ecommerce.orderservice.entity.OrderItem;
+import com.ecommerce.orderservice.model.OrderCreateResponce;
 import com.ecommerce.orderservice.model.OrderItemRequest;
 import com.ecommerce.orderservice.model.OrderRequest;
 import com.ecommerce.orderservice.repository.OrderRepository;
@@ -35,6 +37,17 @@ public class OrderServiceImpl implements OrderService{
         OrderItem orderItem = new OrderItem();
         BeanUtils.copyProperties(itemRequest, orderItem);
         return orderItem;
+    }
+
+    @Override
+    public List<OrderCreateResponce> findAll() {
+        return orderRepository.findAll().stream().map(this::mapToOrderCreateResponce).toList();
+    }
+    private OrderCreateResponce mapToOrderCreateResponce(Order source){
+        OrderCreateResponce target = new OrderCreateResponce();
+        BeanUtils.copyProperties(source, target);
+        return target;
+
     }
 
     
