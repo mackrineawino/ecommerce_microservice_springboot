@@ -10,7 +10,8 @@ Content-Type: application/json
 
 {
     "name":"banana",
-    "price":"50.00"
+    "price":"50.00",
+    "productCode":"Bann001"
 }
 
 
@@ -40,3 +41,7 @@ Content-Type: application/json
         }
    ]
 }
+
+### List Orders
+# @name OrderList
+GET http://localhost:6001/api/v1/orders HTTP/1.1
