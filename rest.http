@@ -28,17 +28,10 @@ Content-Type: application/json
 {
    "orderItems":[
         {
-            "productCode":"potatoes_0001",
+            "productCode":"FGGG45533",
             "quantity":100
-        },
-        {
-            "productCode":"apple_00033",
-            "quantity":50
-        },
-         {
-            "productCode":"lecon_37927432",
-            "quantity":50
         }
+       
    ]
 }
 

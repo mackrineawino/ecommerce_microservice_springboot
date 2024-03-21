@@ -1,9 +1,14 @@
 package com.ecommerce.inventoryservice.service.implementation;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.inventoryservice.entity.Inventory;
+import com.ecommerce.inventoryservice.exceptions.NotEnoughQuantityException;
 import com.ecommerce.inventoryservice.model.InventoryRequest;
 import com.ecommerce.inventoryservice.model.InventoryResponse;
 import com.ecommerce.inventoryservice.repository.InventoryRepository;
@@ -40,5 +45,32 @@ public class InventoryServiceImpl implements InventoryService{
         return target;
 
     }
+
+       @Override
+    public Boolean checkInventory(List<String> productCodes, List<Integer> productQuantities) {
+        Map<String, Integer> unavailableItems = new HashMap<>();
+
+        for (int i = 0; i < productCodes.size(); i++) {
+            String productCode = productCodes.get(i);
+            Integer productQuantity = productQuantities.get(i);
+            Inventory inventory = inventoryRepository.findByProductCode(productCode).orElse(null);
+            if (inventory != null) {
+                // check if enough
+                var dbInventory = inventory.getQuantity();
+                if (productQuantity > dbInventory) {
+                    unavailableItems.put(productCode, productQuantity - dbInventory);
+                }
+            } else {
+                unavailableItems.put(productCode, productQuantity);
+            }
+        }
+        if(unavailableItems.isEmpty()){
+            return true;
+        }else{
+            throw new NotEnoughQuantityException("Not Enough Quantity in Stock", unavailableItems);
+        }
+
+    }
+
     
 }
