@@ -44,8 +44,8 @@ public class OrderServiceImpl implements OrderService{
             productCodes.add(orderItemRequest.getProductCode());
             productQuantities.add(orderItemRequest.getQuantity());
         }
-        log.info("productCodes",productCodes);       
-        log.info("productQuantities",productQuantities);   
+        log.info("{}",productCodes);       
+        log.info("{}",productQuantities);  
         GenericResponse<Boolean> response = webClient.get()
                 .uri("http://localhost:6002/api/v1/inventory/check",
                         uriBuilder -> uriBuilder
