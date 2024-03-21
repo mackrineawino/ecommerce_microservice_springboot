@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService{
         log.info("{}",productCodes);       
         log.info("{}",productQuantities);  
         GenericResponse<?> response = webClientBuilder.build().get()
-                .uri("http://inventory-service/api/inventory/check",
+                .uri("http://inventory-service/api/v1/inventory/check",
                         uriBuilder -> uriBuilder
                                 .queryParam("productCodes", productCodes)
                                 .queryParam("productQuantities", productQuantities)
