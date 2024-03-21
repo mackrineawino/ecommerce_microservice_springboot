@@ -72,6 +72,10 @@ public class OrderServiceImpl implements OrderService{
             var orderItems = orderRequest.getOrderItems().stream().map(this::mapToOrderItemEntity).toList();
             order.setOrderItems(orderItems);
             orderRepository.save(order);
+            for (OrderItemRequest orderItemRequest : orderRequest.getOrderItems()) {
+                reduceInventory(orderItemRequest.getProductCode(), orderItemRequest.getQuantity());
+            }
+        
             return order.getOrderNumber();
         }else {
             // ! throw an exception with the listing of the products that do have enough
@@ -84,6 +88,15 @@ public class OrderServiceImpl implements OrderService{
 
         }
 
+    }
+    private void reduceInventory(String productCode, int quantity) {
+        // Make HTTP request to inventory service to reduce inventory
+        webClientBuilder.build().put()
+                .uri("http://inventory-service/api/v1/inventory/reduce")
+                .bodyValue(Map.of("productCode", productCode, "quantity", quantity))
+                .retrieve()
+                .bodyToMono(Void.class)
+                .block();
     }
     private Mono<? extends Throwable> handleError(ClientResponse response) {
         log.error("Client error received: {}", response.statusCode());

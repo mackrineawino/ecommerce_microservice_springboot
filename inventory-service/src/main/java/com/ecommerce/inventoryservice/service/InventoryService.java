@@ -9,5 +9,6 @@ public interface InventoryService {
     InventoryResponse createInventoryItem(InventoryRequest inventoryRequest);
 
     Boolean checkInventory(List<String> productCodes, List<Integer> productQuantities);
+    boolean reduceInventory(String productCode, int quantity);
     
 }

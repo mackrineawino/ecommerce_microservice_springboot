@@ -45,6 +45,23 @@ public class InventoryServiceImpl implements InventoryService{
         return target;
 
     }
+    @Override
+    public boolean reduceInventory(String productCode, int quantity) {
+        // Retrieve the current inventory level for the product
+        Inventory inventoryItem = inventoryRepository.findByProductCode(productCode).orElse(null);
+        
+        if (inventoryItem == null || inventoryItem.getQuantity() < quantity) {
+            // Not enough inventory available
+            return false;
+        }
+
+        // Update the inventory level
+        inventoryItem.setQuantity(inventoryItem.getQuantity() - quantity);
+        inventoryRepository.save(inventoryItem);
+
+        return true;
+    }
+
 
        @Override
     public Boolean checkInventory(List<String> productCodes, List<Integer> productQuantities) {

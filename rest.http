@@ -29,8 +29,13 @@ Content-Type: application/json
    "orderItems":[
         {
             "productCode":"FGGG45533",
-            "quantity":10
-        }
+            "quantity":100
+        },
+        {
+             "productCode":"FGuyyG45533",
+             "quantity":500
+    
+         }
        
    ]
 }
@@ -46,7 +51,7 @@ POST http://localhost:6002/api/v1/inventory/createInventory HTTP/1.1
 Content-Type: application/json
 
 {
-    "productCode":"FGGG45533",
-    "quantity":500
+    "productCode":"FGuyyG45533",
+    "quantity":5000
     
 }
