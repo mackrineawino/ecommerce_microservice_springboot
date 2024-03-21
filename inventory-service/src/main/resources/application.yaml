@@ -8,3 +8,12 @@ spring:
       uri: mongodb://root:generic@localhost:27017/inventorydb?authSource=admin
 
 
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    enabled: true
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

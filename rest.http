@@ -29,7 +29,7 @@ Content-Type: application/json
    "orderItems":[
         {
             "productCode":"FGGG45533",
-            "quantity":1000
+            "quantity":100
         }
        
    ]
