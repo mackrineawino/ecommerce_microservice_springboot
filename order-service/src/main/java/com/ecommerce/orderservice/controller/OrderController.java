@@ -21,13 +21,13 @@ public class OrderController {
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
-
     @PostMapping("placeOrder")
-    public GenericResponse<?> placeOrder(@RequestBody OrderRequest orderRequest) {
-        orderService.placeOrder(orderRequest);
-        GenericResponse<?> resp = GenericResponse.builder()
+    public GenericResponse<String> placeOrder(@RequestBody OrderRequest orderRequest) {
+
+        GenericResponse<String> resp = GenericResponse.<String>builder()
                 .success(true)
                 .msg("Order placed successfully")
+                .data(orderService.placeOrder(orderRequest))
                 .build();
         return resp;
     }
