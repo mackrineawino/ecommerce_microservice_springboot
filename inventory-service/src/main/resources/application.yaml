@@ -5,5 +5,6 @@ spring:
     name: inventory-service
   data:
     mongodb:
-      uri: mongodb://root:generic@localhost:27017/inventorydb
+      uri: mongodb://root:generic@localhost:27017/inventorydb?authSource=admin
+
 
