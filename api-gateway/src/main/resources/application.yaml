@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: api-gateway
+  config:
+    import: optional:configserver:http://localhost:8888
   cloud:
     gateway:
       routes:
@@ -18,10 +20,3 @@ spring:
           uri: lb://INVENTORY-SERVICE
           predicates:
             - Path=/api/v1/inventory/**
-eureka:
-  client:
-    enabled: true
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
