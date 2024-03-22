@@ -1,0 +1,12 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: online-shopping-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/mackrineawino/spring-microservices-config-repository
+          default-label: main
+          skipSslValidation: true
