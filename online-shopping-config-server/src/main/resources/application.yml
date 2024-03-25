@@ -10,3 +10,16 @@ spring:
           uri: https://github.com/mackrineawino/spring-microservices-config-repository
           default-label: main
           skipSslValidation: true
+          force-pull: true
+          timeout: 5 #default
+          clone-on-start: true
+          search-paths: '\{application}'
+          deleteUntrackedBranches: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+eureka:
+    fetch-registry: false
+    register-with-eureka: false
