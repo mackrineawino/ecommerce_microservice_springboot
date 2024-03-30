@@ -89,5 +89,10 @@ public class InventoryServiceImpl implements InventoryService{
 
     }
 
-    
+    @Override
+    public List<InventoryResponse> findAll() {
+        return inventoryRepository.findAll().stream().map(this::mapToInventoryCreateResponse).toList();
+    }
+
+   
 }

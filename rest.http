@@ -54,3 +54,25 @@ Content-Type: application/json
     "quantity":500
     
 }
+
+
+### List inventory Items
+# @name inventory
+GET http://localhost:7000/api/v1/inventory/inventorylist HTTP/1.1
+
+### add to cart
+# @name AddToCart
+POST http://localhost:7000/api/v1/cart HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Product Name",
+    "price": 25.99,
+    "productCode": "ABC1ds23",
+    "imageUrl": "https://example.com/product-image.jpg",
+    "quantity": 1
+}
+
+### List cart Items
+# @name cartList
+GET http://localhost:7000/api/v1/cart HTTP/1.1
