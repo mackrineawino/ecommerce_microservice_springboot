@@ -17,4 +17,5 @@ public class ProductCreateRequest {
     private String productCode;
     private ProductCategory productCategory;
     private String imageUrl;
+    private Integer quantity;
 }

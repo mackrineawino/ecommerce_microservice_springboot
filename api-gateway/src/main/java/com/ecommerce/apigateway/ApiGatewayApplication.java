@@ -24,8 +24,8 @@ public class ApiGatewayApplication {
         corsConfig.addAllowedHeader("*");
         corsConfig.addAllowedMethod("*");
 
-        org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource source =
-                new org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource(new PathPatternParser());
+        org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource source = new org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource(
+                new PathPatternParser());
         source.registerCorsConfiguration("/**", corsConfig);
 
         return new CorsWebFilter(source);

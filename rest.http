@@ -9,11 +9,12 @@ POST http://localhost:7000/api/v1/products HTTP/1.1
 Content-Type: application/json
 
 {
-    "name":"Legumes",
-    "price":"2000.00",
-    "productCode":"Leg123",
-    "productCategory": "LEGUME",
-    "imageUrl": "https://publish.purewow.net/wp-content/uploads/sites/2/2022/07/types-of-legumes-hero.jpg?fit=1174%2C630"
+    "name":"Potatoes sweet",
+    "price":"2500.00",
+    "productCode":"PotShgwe89887123",
+    "productCategory": "FRUIT",
+    "imageUrl": "https://cdn.mos.cms.futurecdn.net/iC7HBvohbJqExqvbKcV3pP-1200-80.jpg",
+    "quantity": 1600
 }
 
 
@@ -49,7 +50,7 @@ POST http://localhost:7000/api/v1/inventory/createInventory HTTP/1.1
 Content-Type: application/json
 
 {
-    "productCode":"ereh857453",
+    "productCode":"eh857453",
     "quantity":500
     
 }
