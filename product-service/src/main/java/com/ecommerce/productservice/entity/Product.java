@@ -37,4 +37,10 @@ public class Product {
 
     @Column(name= "product_code")
     private String productCode;
+
+    @Column(name= "product_category")
+    private ProductCategory productCategory;
+
+    @Column(name= "imageUrl")
+    private String imageUrl;
 }

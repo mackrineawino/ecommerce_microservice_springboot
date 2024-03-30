@@ -20,3 +20,14 @@ spring:
           uri: lb://INVENTORY-SERVICE
           predicates:
             - Path=/api/v1/inventory/**
+      globalcors:
+        corsConfigurations:
+          'cors-config':
+            allowedOrigins: "http://localhost:1841"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedHeaders: "*"
+            allowCredentials: true

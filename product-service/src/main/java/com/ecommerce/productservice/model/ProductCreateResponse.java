@@ -2,6 +2,8 @@ package com.ecommerce.productservice.model;
 
 import java.math.BigDecimal;
 
+import com.ecommerce.productservice.entity.ProductCategory;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,4 +18,6 @@ public class ProductCreateResponse {
     private String name;
     private BigDecimal price;
     private String productCode;
+    private ProductCategory productCategory;
+    private String imageUrl;
 }

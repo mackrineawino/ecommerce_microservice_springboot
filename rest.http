@@ -9,9 +9,11 @@ POST http://localhost:7000/api/v1/products HTTP/1.1
 Content-Type: application/json
 
 {
-    "name":"phone",
-    "price":"150000.00",
-    "productCode":"wur01"
+    "name":"Legumes",
+    "price":"2000.00",
+    "productCode":"Leg123",
+    "productCategory": "LEGUME",
+    "imageUrl": "https://publish.purewow.net/wp-content/uploads/sites/2/2022/07/types-of-legumes-hero.jpg?fit=1174%2C630"
 }
 
 

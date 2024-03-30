@@ -32,6 +32,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -54,6 +55,11 @@
 			<groupId>io.zipkin.reporter2</groupId>
 			<artifactId>zipkin-reporter-brave</artifactId>
 		</dependency>
+		<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>5.3.12</version> <!-- Use the appropriate version -->
+</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -64,6 +70,8 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			
 		</dependencies>
 	</dependencyManagement>
 
