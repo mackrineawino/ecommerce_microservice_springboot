@@ -30,6 +30,17 @@ public class InventoryController {
         this.inventoryService = inventoryService;
     };
 
+    @GetMapping("inventorylist")
+    public GenericResponse<List<InventoryResponse>> list() {
+       List<InventoryResponse> pr = inventoryService.findAll();
+       GenericResponse<List<InventoryResponse>> resp = GenericResponse.<List<InventoryResponse>>builder()
+                .success(true)
+                .msg("Data fetched Successfully")
+                .data(pr)
+                .build();
+                log.info("We returned : {}",pr);
+                return resp;
+    }
     @PostMapping("createInventory")
     @ResponseStatus(code = HttpStatus.CREATED)
     public GenericResponse<InventoryResponse> createInventoryItem(

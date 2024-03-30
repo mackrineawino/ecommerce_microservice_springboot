@@ -20,6 +20,10 @@ spring:
           uri: lb://INVENTORY-SERVICE
           predicates:
             - Path=/api/v1/inventory/**
+        - id: inventory
+          uri: lb://CART-SERVICE
+          predicates:
+            - Path=/api/v1/cart/**
       globalcors:
         corsConfigurations:
           'cors-config':
