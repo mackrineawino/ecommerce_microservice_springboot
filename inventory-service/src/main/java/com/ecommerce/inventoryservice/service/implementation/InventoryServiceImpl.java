@@ -15,41 +15,39 @@ import com.ecommerce.inventoryservice.repository.InventoryRepository;
 import com.ecommerce.inventoryservice.service.InventoryService;
 
 @Service
-public class InventoryServiceImpl implements InventoryService{
+public class InventoryServiceImpl implements InventoryService {
 
-   private final InventoryRepository inventoryRepository;
-
-    
+    private final InventoryRepository inventoryRepository;
 
     public InventoryServiceImpl(InventoryRepository inventoryRepository) {
         this.inventoryRepository = inventoryRepository;
     }
 
-
-
     @Override
     public InventoryResponse createInventoryItem(InventoryRequest inventoryRequest) {
-        var savedInventoryItem =  inventoryRepository.save(mapToInventoryEntity(inventoryRequest));
+        var savedInventoryItem = inventoryRepository.save(mapToInventoryEntity(inventoryRequest));
         return mapToInventoryCreateResponse(savedInventoryItem);
     }
 
-    private Inventory mapToInventoryEntity(InventoryRequest source){
+    private Inventory mapToInventoryEntity(InventoryRequest source) {
         Inventory target = new Inventory();
         BeanUtils.copyProperties(source, target);
         return target;
 
     }
-    private InventoryResponse mapToInventoryCreateResponse(Inventory source){
+
+    private InventoryResponse mapToInventoryCreateResponse(Inventory source) {
         InventoryResponse target = new InventoryResponse();
         BeanUtils.copyProperties(source, target);
         return target;
 
     }
+
     @Override
     public boolean reduceInventory(String productCode, int quantity) {
         // Retrieve the current inventory level for the product
         Inventory inventoryItem = inventoryRepository.findByProductCode(productCode).orElse(null);
-        
+
         if (inventoryItem == null || inventoryItem.getQuantity() < quantity) {
             // Not enough inventory available
             return false;
@@ -62,8 +60,21 @@ public class InventoryServiceImpl implements InventoryService{
         return true;
     }
 
+    @Override
+    public boolean updateInventory(String productCode, int newQuantity) {
+        Inventory inventoryItem = inventoryRepository.findByProductCode(productCode).orElse(null);
 
-       @Override
+        if (inventoryItem == null) {
+            return false;
+        }
+
+        inventoryItem.setQuantity(newQuantity);
+        inventoryRepository.save(inventoryItem);
+
+        return true;
+    }
+
+    @Override
     public Boolean checkInventory(List<String> productCodes, List<Integer> productQuantities) {
         Map<String, Integer> unavailableItems = new HashMap<>();
 
@@ -81,9 +92,9 @@ public class InventoryServiceImpl implements InventoryService{
                 unavailableItems.put(productCode, productQuantity);
             }
         }
-        if(unavailableItems.isEmpty()){
+        if (unavailableItems.isEmpty()) {
             return true;
-        }else{
+        } else {
             throw new NotEnoughQuantityException("Not Enough Quantity in Stock", unavailableItems);
         }
 
@@ -94,5 +105,4 @@ public class InventoryServiceImpl implements InventoryService{
         return inventoryRepository.findAll().stream().map(this::mapToInventoryCreateResponse).toList();
     }
 
-   
 }

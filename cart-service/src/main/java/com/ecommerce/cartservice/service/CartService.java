@@ -10,4 +10,8 @@ public interface CartService {
 
     List<CartCreateResponse> findAll();
 
+    void deleteById(Integer cartItemId);
+
+    void deleteAll();
+
 }

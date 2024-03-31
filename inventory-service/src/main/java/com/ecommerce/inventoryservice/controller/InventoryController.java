@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 @RequestMapping("api/v1/inventory")
+@CrossOrigin(origins = "http://localhost:1841", allowCredentials = "true")
 public class InventoryController {
     private final InventoryService inventoryService;
 
@@ -86,4 +88,26 @@ public class InventoryController {
 
     }
 
+    @PutMapping("updateInventory")
+    public GenericResponse<Boolean> updateInventory(@RequestBody Map<String, Object> updateRequest) {
+        String productCode = (String) updateRequest.get("productCode");
+        Object quantityObj = updateRequest.get("newQuantity");
+    
+        if (quantityObj instanceof Integer) {
+            int newQuantity = (int) quantityObj;
+            inventoryService.updateInventory(productCode, newQuantity);
+    
+            return GenericResponse.<Boolean>builder()
+                    .success(true)
+                    .msg("Inventory updated Successfully")
+                    .build();
+        } else {
+            // Handle the case where newQuantity is not an Integer
+            return GenericResponse.<Boolean>builder()
+                    .success(false)
+                    .msg("Invalid newQuantity type")
+                    .build();
+        }
+    }
+    
 }

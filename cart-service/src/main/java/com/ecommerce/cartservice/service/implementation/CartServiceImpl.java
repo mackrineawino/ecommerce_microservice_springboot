@@ -31,6 +31,15 @@ public class CartServiceImpl implements CartService{
         BeanUtils.copyProperties(source, target);
         return target;
     }
+    @Override
+    public void deleteById(Integer cartItemId) {
+        cartRepository.deleteById(cartItemId);
+    }
+
+    @Override
+    public void deleteAll() {
+        cartRepository.deleteAll();
+    }
 
 
     @Override
