@@ -9,5 +9,6 @@ public interface OrderService {
 
     String placeOrder(OrderRequest orderRequest);
     List<OrderCreateResponce> findAll();
+    void deleteOrderById(Integer id);
     
 }
