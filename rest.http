@@ -76,3 +76,28 @@ Content-Type: application/json
 ### List cart Items
 # @name cartList
 GET http://localhost:7000/api/v1/cart HTTP/1.1
+
+
+
+### Save user
+# @name save user
+POST http://localhost:7000/api/v1/customers/signup HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"mackie567ye",
+    "email":"mackie757ggg@gmail.com",
+    "password":"Mackie@86"
+    
+}
+
+### Login 
+# @name Login
+POST http://localhost:7000/api/v1/customers/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"mackiee",
+    "password":"Mackie@86"
+    
+}

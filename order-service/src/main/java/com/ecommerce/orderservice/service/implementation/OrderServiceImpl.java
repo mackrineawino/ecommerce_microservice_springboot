@@ -1,11 +1,9 @@
 package com.ecommerce.orderservice.service.implementation;
-
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
+import java.time.Instant;
 import org.springframework.beans.BeanUtils;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatusCode;
@@ -119,6 +117,13 @@ public class OrderServiceImpl implements OrderService{
         return target;
 
     }
+
+    @Override
+    public void deleteOrderById(Integer id) {
+        orderRepository.deleteById(id);
+    }  
+
+    
 
     
 }
